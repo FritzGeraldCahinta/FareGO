@@ -1,0 +1,321 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+}
+
+.sidebar {
+    background: linear-gradient(180deg, #00d4aa 0%, #00b894 100%);
+    width: 200px;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.nav-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.nav-button.active {
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+}
+
+.logout-btn {
+    margin-top: auto;
+    background: rgb(136, 1, 255);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(143, 5, 255, 0.2);
+}
+
+.main-content {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    margin: 1rem;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.revenue-card, .revenue-card-simple {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: slideUp 0.6s ease;
+    margin: 0 auto;
+}
+
+.revenue-card {
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.revenue-card-simple {
+    padding: 60px 40px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.card-title-simple {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2d3436;
+    margin-bottom: 60px;
+}
+
+.earnings-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.earnings-label-simple {
+    color: #636e72;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.earnings-amount-simple {
+    font-size: 64px;
+    font-weight: bold;
+    color: #00d4aa;
+    font-family: 'Courier New', monospace;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.earnings-subtitle-simple {
+    color: #74b9ff;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.card-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2d3436;
+    margin-bottom: 30px;
+}
+
+.earnings-label {
+    color: #636e72;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.earnings-amount {
+    font-size: 48px;
+    font-weight: bold;
+    color: #00d4aa;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+.earnings-subtitle {
+    color: #74b9ff;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.date-info {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.total-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-top: 15px;
+    border-left: 4px solid #00d4aa;
+}
+
+.summary-label {
+    color: #636e72;
+    font-weight: 500;
+}
+
+.summary-amount {
+    color: #00d4aa;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.overview-container {
+    width: 100%;
+    max-width: 1200px;
+    animation: slideUp 0.6s ease;
+}
+
+.overview-header, .date-filter, .revenue-section, .stat-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.overview-header {
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.overview-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2d3436;
+    margin-bottom: 10px;
+}
+
+.overview-subtitle {
+    color: #636e72;
+    font-size: 16px;
+    margin: 0;
+}
+
+.date-filter {
+    padding: 20px 30px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.apply-btn {
+    background: #00d4aa;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.apply-btn:hover {
+    background: #00b894;
+}
+
+.revenue-section {
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2d3436;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f1f3f4;
+}
+
+.revenue-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.revenue-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #00d4aa;
+}
+
+.date-column {
+    font-weight: 500;
+    color: #2d3436;
+}
+
+.amount-column {
+    font-size: 18px;
+    font-weight: bold;
+    color: #00d4aa;
+    font-family: 'Courier New', monospace;
+}
+
+.summary-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 25px;
+}
+
+.stat-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00d4aa;
+    font-family: 'Courier New', monospace;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
