@@ -1,0 +1,123 @@
+// Import Firebase modules
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "farego.firebaseapp.com",
+    projectId: "farego",
+    storageBucket: "farego.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Update date display
+function updateDate() {
+    const now = new Date();
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    };
+    document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
+}
+
+// Load total fare from Firestore
+async function loadTotalFare() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "fares"));
+        let total = 0;
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            if (data.amount) total += data.amount;
+        });
+        const formatted = "₱" + total.toLocaleString() + ".00";
+        document.querySelectorAll('.earnings-amount, .earnings-amount-simple, .summary-amount, .stat-amount')
+            .forEach(el => el.textContent = formatted);
+    } catch (e) {
+        console.error("Error loading fares:", e);
+    }
+}
+
+// Show Dashboard view
+function showDashboard() {
+    document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelector('.main-content').innerHTML = `
+        <div class="revenue-card-simple">
+            <h1 class="card-title-simple">Total Accumulated Revenue</h1>
+            <div class="earnings-section">
+                <div class="earnings-label-simple">TOTAL EARNINGS</div>
+                <div class="earnings-amount-simple">Loading...</div>
+                <div class="earnings-subtitle-simple">From all fare collections</div>
+            </div>
+        </div>
+    `;
+    loadTotalFare();
+}
+
+// Show Overview view
+function showOverview() {
+    document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelector('.main-content').innerHTML = `
+        <div class="overview-container">
+            <div class="overview-header">
+                <h1 class="overview-title">Overview</h1>
+                <p class="overview-subtitle">Historical data and comprehensive analytics</p>
+            </div>
+            <div class="date-filter">
+                <label for="dateSelect">Select Period:</label>
+                <input type="date" id="dateSelect">
+                <button class="apply-btn" onclick="applyFilter()">Apply</button>
+            </div>
+            <div class="revenue-section">
+                <h2 class="section-title">Accumulated Revenue by Date</h2>
+                <div class="revenue-list" id="revenueList">
+                    <div>Loading fare data...</div>
+                </div>
+            </div>
+            <div class="summary-stats">
+                <div class="stat-card"><h3>Weekly Total</h3><p class="stat-amount">Loading...</p></div>
+                <div class="stat-card"><h3>Daily Average</h3><p class="stat-amount">Loading...</p></div>
+                <div class="stat-card"><h3>Highest Day</h3><p class="stat-amount">Loading...</p></div>
+            </div>
+        </div>
+    `;
+    loadTotalFare();
+}
+
+// Logout function
+function logout() {
+    if (confirm("Are you sure you want to logout?")) {
+        alert("Logging out...");
+        // Add redirect logic here if needed
+    }
+}
+
+// Apply date filter
+function applyFilter() {
+    const selectedDate = document.getElementById("dateSelect").value;
+    if (selectedDate) {
+        alert(`Filter applied for date: ${selectedDate}`);
+    }
+}
+
+// Initialize on page load
+updateDate();
+loadTotalFare();
+setInterval(updateDate, 60000);
+
+// Expose functions to window for onclick handlers
+window.showDashboard = showDashboard;
+window.showOverview = showOverview;
+window.logout = logout;
+window.applyFilter = applyFilter;
