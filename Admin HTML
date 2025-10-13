@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FareGo Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">FareGo</div>
+        <button class="nav-button active" onclick="showDashboard()">Dashboard</button>
+        <button class="nav-button" onclick="showOverview()">Overview</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="main-content">
+        <div class="revenue-card">
+            <h1 class="card-title">Total Accumulated Revenue</h1>
+            <div class="earnings-label">TOTAL EARNINGS</div>
+            <div class="earnings-amount">Loading...</div>
+            <div class="earnings-subtitle">From all fare collections</div>
+            <div class="date-info"><span id="currentDate"></span></div>
+            <div class="total-summary">
+                <span class="summary-label">Total Accumulated:</span>
+                <span class="summary-amount">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="wasd.js"></script>
+</body>
+</html>
+
